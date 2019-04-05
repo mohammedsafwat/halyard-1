@@ -1,4 +1,4 @@
-export const HotelsResponseParameters = {
+const HotelsResponseParameters = {
     hotelId: "hotel_id",
     hotelData: "hotel_data",
     roomData: "room_data",
@@ -12,12 +12,12 @@ export const HotelsResponseParameters = {
         cityId: "city_id",
         hotelPhotos: "hotel_photos",
         numberOfReviews: "number_of_reviews",
-        ranking,
-        url,
-        city,
-        country,
-        address,
-        name
+        ranking: "ranking",
+        url: "url",
+        city: "city",
+        country: "country",
+        address: "address",
+        name: "name"
     },
     roomDataParameters: {
         roomName: "room_name",
@@ -32,3 +32,5 @@ export const HotelsResponseParameters = {
         urlSquare60: "url_square60"
     }
 }
+
+export default HotelsResponseParameters;

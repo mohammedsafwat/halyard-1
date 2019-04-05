@@ -25,5 +25,10 @@ export const HotelsResponseParameters = {
         roomPhotos: "room_photos",
         roomDesription: "room_description",
         roomInfo: "room_info"
+    },
+    photoDataParameters: {
+        urlOriginal: "url_original",
+        urlMax300: "url_max300",
+        urlSquare60: "url_square60"
     }
 }

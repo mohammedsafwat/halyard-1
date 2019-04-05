@@ -15,7 +15,7 @@ export const HotelsRemoteDataSource = implement(HotelsDataSource)({
         }
         const hotelsRespose = await RestNetworkClient.performRequest(hotelsUrl, RequestType.get, parameters);
         const hotels = hotelsRespose.result;
-        hotels.map(hotel => {
+        return hotels.map(hotel => {
             const hotelId = hotel[HotelResponseParameters.hotelId];
             const hotelData = parseHotelData(hotel[HotelResponseParameters.hotelData]);
             const roomData = parseRoomData(hotel[HotelResponseParameters.roomData]);
@@ -34,7 +34,7 @@ function parseHotelData(hotelData) {
     const reviewScore = hotelData[HotelResponseParameters.hotelDataParameters.reviewScore];
     const cityId = hotelData[HotelResponseParameters.hotelDataParameters.cityId];
     const url = hotelData[HotelResponseParameters.hotelDataParameters.url];
-    const hotelPhotos = hotelData[HotelResponseParameters.hotelDataParameters.hotelPhotos];
+    const hotelPhotos = parsePhotos(hotelData[HotelResponseParameters.hotelDataParameters.hotelPhotos]);
     const city = hotelData[HotelResponseParameters.hotelDataParameters.city];
     const country = hotelData[HotelResponseParameters.hotelDataParameters.country];
     const address = hotelData[HotelResponseParameters.hotelDataParameters.address];
@@ -47,9 +47,18 @@ function parseHotelData(hotelData) {
 function parseRoomData(roomData) {
     const roomName = roomData[HotelResponseParameters.roomDataParameters.roomName];
     const roomId = roomData[HotelResponseParameters.roomDataParameters.roomId];
-    const roomPhotos = roomData[HotelResponseParameters.roomDataParameters.roomPhotos];
+    const roomPhotos = parsePhotos(roomData[HotelResponseParameters.roomDataParameters.roomPhotos]);
     const roomDescription = roomData[HotelResponseParameters.roomDataParameters.roomDescription];
     const roomInfo = roomData[HotelResponseParameters.roomDataParameters.roomInfo];
 
     return RoomData(roomName, roomId, roomPhotos, roomDescription, roomInfo);
+}
+
+function parsePhotos(photosData) {
+    return photosData.map(photo => {
+        const urlOriginal = photo[HotelResponseParameters.photoDataParameters.urlOriginal];
+        const urlMax300 = photo[HotelResponseParameters.photoDataParameters.urlMax300];
+        const urlSquare60 = photo[HotelResponseParameters.photoDataParameters.urlSquare60];
+        return new Photo(urlOriginal, urlMax300, urlSquare60);
+    });
 }

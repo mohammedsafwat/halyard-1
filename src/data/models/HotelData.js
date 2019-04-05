@@ -9,8 +9,8 @@ export default class HotelData {
         this.reviewScore = reviewScore;
         this.cityId = cityId;
         this.url = url;
-        this.hotelPhotos = hotelPhotos;
         this.city = city;
+        this.hotelPhotos = hotelPhotos;
         this.country = country;
         this.address = address;
         this.numberOfReviews = numberOfReviews;

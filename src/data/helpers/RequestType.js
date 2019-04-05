@@ -1,4 +1,6 @@
-export const RequestType = {
-    get,
-    post
+const RequestType = {
+    get: "get",
+    post: "post"
 }
+
+export default RequestType;

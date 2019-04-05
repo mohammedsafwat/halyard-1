@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import HotelsRemoteDataSource from './data/datasources/remote/HotelsRemoteDataSource';
+import HotelsFilter from './data/models/HotelsFilter'
 
 class App extends Component {
+  componentDidMount() {
+    this.fetchHotels();
+  }
+  
+  fetchHotels = async () => {
+    const hotels = await HotelsRemoteDataSource.hotels(new HotelsFilter(-3875419, 0, 20));
+    console.log(hotels);
+  }
+
   render() {
     return (
       <div className="App">

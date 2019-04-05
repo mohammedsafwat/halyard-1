@@ -1,7 +1,7 @@
 export default class Hotel {
-    constructor(hotelId, hotelData, roomData) {
+    constructor(hotelId, hotelData, roomsData) {
         this.hotelId = hotelId;
         this.hotelData = hotelData;
-        this.roomData = roomData;
+        this.roomsData = roomsData;
     }
 }

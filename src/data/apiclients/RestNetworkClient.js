@@ -1,10 +1,23 @@
 import axios from 'axios'
+import implement from 'implement-js'
 import RequestType from '../helpers/RequestType'
+import RestNetworkClientProtocol from '../protocols/RestNetworkClientProtocol'
 
-export const RestNetworkClient = implement(RestNetworkClientProtocol)({
-    async performRequest(requestUrl, requestType, parameters) {
-        const response = await requestType == RequestType.get ?
-                        axios.get(requestUrl, { parameters }) : axios.post(requestUrl, parameters);
+const RestNetworkClient = implement(RestNetworkClientProtocol)({
+    async performRequest(requestUrl, requestType, parameters, headers={}, auth={}) {
+        const response = await requestType === RequestType.get ?
+            axios.get(requestUrl, {
+                params: parameters,
+                headers: headers,
+                auth: auth
+            }) : 
+            axios.post(requestUrl,
+                parameters, {
+                headers: headers,
+                auth: auth
+            });
         return response;
     }
 });
+
+export default RestNetworkClient;

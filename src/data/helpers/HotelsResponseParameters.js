@@ -23,7 +23,7 @@ const HotelsResponseParameters = {
         roomName: "room_name",
         roomId: "room_id",
         roomPhotos: "room_photos",
-        roomDesription: "room_description",
+        roomDescription: "room_description",
         roomInfo: "room_info"
     },
     photoDataParameters: {
@@ -31,6 +31,6 @@ const HotelsResponseParameters = {
         urlMax300: "url_max300",
         urlSquare60: "url_square60"
     }
-}
+};
 
 export default HotelsResponseParameters;

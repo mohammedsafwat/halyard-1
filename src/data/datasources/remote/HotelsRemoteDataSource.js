@@ -36,7 +36,7 @@ const HotelsRemoteDataSource = implement(HotelsDataSource)({
     }
 });
 
-function parseHotelData(hotelData) {
+const parseHotelData = hotelData => {
     if (hotelData) {
         const numberOfRooms = hotelData[HotelResponseParameters.hotelDataParameters.numberOfRooms];
         const location = hotelData[HotelResponseParameters.hotelDataParameters.location];
@@ -57,9 +57,9 @@ function parseHotelData(hotelData) {
         return new HotelData(numberOfRooms, location, isClosed, hotelClass, hotelDescription, ranking, reviewScore, cityId, url, city, hotelPhotos, country, address, numberOfReviews, name);
     }
     return null;
-}
+};
 
-function parseRoomsData(roomsData) {
+const parseRoomsData = roomsData => {
     if (roomsData) {
         return roomsData.map(roomData => {
             const roomName = roomData[HotelResponseParameters.roomDataParameters.roomName];
@@ -67,14 +67,13 @@ function parseRoomsData(roomsData) {
             const roomPhotos = parsePhotos(roomData[HotelResponseParameters.roomDataParameters.roomPhotos]);
             const roomDescription = roomData[HotelResponseParameters.roomDataParameters.roomDescription];
             const roomInfo = roomData[HotelResponseParameters.roomDataParameters.roomInfo];
-
             return new RoomData(roomName, roomId, roomPhotos, roomDescription, roomInfo);
         })
     }
     return null;
-}
+};
 
-function parsePhotos(photosData) {
+const parsePhotos = photosData => {
     if (photosData) {
         return photosData.map(photo => {
             const urlOriginal = photo[HotelResponseParameters.photoDataParameters.urlOriginal];
@@ -84,11 +83,11 @@ function parsePhotos(photosData) {
         });
     }
     return [];
-}
+};
 
-function handleError(error) {
+const handleError = error => {
     console.warn(error);
     return null;
-}
+};
 
 export default HotelsRemoteDataSource;

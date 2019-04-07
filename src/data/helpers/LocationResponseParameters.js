@@ -1,6 +1,7 @@
 const LocationResponseParameters = {
     latitude: "latitude",
-    longitude: "longitude"
+    longitude: "longitude",
+    coords: "coords"
 };
 
 export default LocationResponseParameters;

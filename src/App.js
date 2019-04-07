@@ -3,20 +3,30 @@ import logo from './logo.svg';
 import './App.css';
 import HotelsRemoteDataSource from './data/datasources/remote/HotelsRemoteDataSource';
 import CitiesRemoteDataSource from './data/datasources/remote/CitiesRemoteDataSource';
-import HotelsFilter from './data/models/HotelsFilter'
+import UserLocationRemoteDataSource from './data/datasources/remote/UserLocationRemoteDataSource';
+import HotelsFilter from './data/models/static_data/HotelsFilter'
 import CitiesFilter from './data/models/CitiesFilter';
 
 class App extends Component {
   componentDidMount() {
     this.fetchHotels();
+    this.fetchCities();
+    this.fetchUserLocation();
   }
   
   fetchHotels = async () => {
     const hotels = await HotelsRemoteDataSource.hotels(new HotelsFilter(-3875419, 0, 20));
     console.log(hotels);
+  }
 
+  fetchCities = async () => {
     const cities = await CitiesRemoteDataSource.cities(new CitiesFilter(0, 20));
     console.log(cities);
+  }
+
+  fetchUserLocation = async () => {
+    const userLocation = await UserLocationRemoteDataSource.userLocation();
+    console.log(userLocation);
   }
 
   render() {

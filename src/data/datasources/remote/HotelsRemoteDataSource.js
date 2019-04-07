@@ -52,7 +52,6 @@ const parseHotelData = hotelData => {
         const address = hotelData[HotelsResponseParameters.hotelDataParameters.address];
         const numberOfReviews = hotelData[HotelsResponseParameters.hotelDataParameters.numberOfReviews];
         const name = hotelData[HotelsResponseParameters.hotelDataParameters.name];
-
         return new HotelData(numberOfRooms, location, isClosed, hotelClass, hotelDescription, ranking, reviewScore, cityId, url, city, hotelPhotos, country, address, numberOfReviews, name);
     }
     return null;

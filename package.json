@@ -7,13 +7,17 @@
     "dateformat": "^3.0.3",
     "geolocator": "^2.1.5",
     "implement-js": "0.0.26",
+    "next": "^8.0.4",
+    "node-sass": "^4.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-map-gl": "^4.1.1",
     "react-scripts": "2.1.8"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "INLINE_RUNTIME_CHUNK=false react-scripts build",
+    "dev": "next",
+    "build": "INLINE_RUNTIME_CHUNK=false next build",
+    "start": "next start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

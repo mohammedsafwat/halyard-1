@@ -7,6 +7,9 @@ import HotelsFilter from './data/models/static_data/HotelsFilter'
 import HotelsAvailabilityFilter from './data/models/dynamic_data/HotelsAvailabilityFilter'
 import DateUtils from './data/utils/DateUtils'
 
+import 'mapbox-gl/dist/mapbox-gl.css';
+import './App.scss'
+
 class App extends Component {
   state = {
     hotelsData: null,

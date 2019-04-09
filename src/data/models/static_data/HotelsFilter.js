@@ -1,6 +1,6 @@
 export default class HotelsFilter {
-    constructor(cityIds, offset, rows) {
-        this.cityIds = cityIds;
+    constructor(hotelIds, offset, rows) {
+        this.hotelIds = hotelIds;
         this.offset = offset;
         this.rows = rows;
     }

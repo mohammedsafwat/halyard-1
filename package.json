@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "dateformat": "^3.0.3",
     "geolocator": "^2.1.5",
     "implement-js": "0.0.26",
     "react": "^16.8.6",

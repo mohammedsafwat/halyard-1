@@ -13,7 +13,7 @@ const HotelsRemoteDataSource = implement(HotelsDataSource)({
     async hotels(hotelsFilter) {
         const hotelsUrl = `${ApiConstants.corsProxyUrl}${ApiConstants.baseUrl}${ApiConstants.hotelsEndpoint}`;
         const parameters = {
-            city_ids: hotelsFilter.cityIds,
+            hotel_ids: hotelsFilter.hotelIds,
             offset: hotelsFilter.offset,
             rows: hotelsFilter.rows,
             extras: "hotel_info,room_info,hotel_photos,room_photos,hotel_description,room_description"

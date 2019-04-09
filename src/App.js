@@ -1,60 +1,62 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import './App.css'
 import HotelsRemoteDataSource from './data/datasources/remote/HotelsRemoteDataSource'
-import CitiesRemoteDataSource from './data/datasources/remote/CitiesRemoteDataSource'
 import UserLocationRemoteDataSource from './data/datasources/remote/UserLocationRemoteDataSource'
 import HotelsAvailabilityRemoteDataSource from './data/datasources/remote/HotelsAvailabilityRemoteDataSource'
 import HotelsFilter from './data/models/static_data/HotelsFilter'
-import CitiesFilter from './data/models/CitiesFilter'
 import HotelsAvailabilityFilter from './data/models/dynamic_data/HotelsAvailabilityFilter'
+import DateUtils from './data/utils/DateUtils'
 
 class App extends Component {
-  componentDidMount() {
-    this.fetchHotels();
-    this.fetchCities();
-    this.fetchUserLocation();
-    this.fetchHotelsAvailability();
-  }
-  
-  fetchHotels = async () => {
-    const hotels = await HotelsRemoteDataSource.hotels(new HotelsFilter(-3875419, 0, 20));
-    console.log(hotels);
+  state = {
+    hotelsData: null,
+    hotelsAvailabilityData: null
   }
 
-  fetchCities = async () => {
-    const cities = await CitiesRemoteDataSource.cities(new CitiesFilter(0, 20));
-    console.log(cities);
+  componentDidMount() {
+    this.fetchUserLocation()
+      .then(userLocation => {
+        this.fetchHotelsData(userLocation)
+      }).catch(error => {
+        console.warn(error);
+      });
   }
+
+  fetchHotelsData = async (userLocation) => {
+    const hotelsAvailabilityFilter = new HotelsAvailabilityFilter(DateUtils.nowDate(), DateUtils.nextMonthsDate(1), userLocation.latitude, userLocation.longitude, 'A,A', 0, 20);
+    this.fetchHotelsAvailability(hotelsAvailabilityFilter)
+      .then(hotelsAvailabilityData => {
+        this.setState(() => ({
+          hotelsAvailabilityData
+        }));
+        const hotelIds = hotelsAvailabilityData.map(hotelAvailability => {
+          return hotelAvailability.hotelId;
+        }).join(',');
+        const hotelsFilter = new HotelsFilter(hotelIds, 0, 20);
+        this.fetchHotels(hotelsFilter).then(hotelsData => this.setState(() => ({
+          hotelsData
+        })));
+      });
+  };
 
   fetchUserLocation = async () => {
-    const userLocation = await UserLocationRemoteDataSource.userLocation();
-    console.log(userLocation);
+    return await UserLocationRemoteDataSource.userLocation();
   }
 
-  fetchHotelsAvailability = async () => {
-    const hotelsAvailabilityFilter = new HotelsAvailabilityFilter('2019-07-06', '2019-07-07', -1565670, 'A,A');
-    const hotelsAvailability = await HotelsAvailabilityRemoteDataSource.hotelsAvailability(hotelsAvailabilityFilter);
-    console.log(hotelsAvailability);
+  fetchHotels = async (hotelsFilter) => {
+    return await HotelsRemoteDataSource.hotels(hotelsFilter);
+  }
+
+  fetchHotelsAvailability = async (hotelsAvailabilityFilter) => {
+    return await HotelsAvailabilityRemoteDataSource.hotelsAvailability(hotelsAvailabilityFilter);
   }
   
   render() {
+    const { hotelsAvailabilityData, hotelsData } = this.state;
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {!hotelsAvailabilityData || !hotelsData ? <p>Loading..</p> : <p>Data available</p>}
       </div>
     );
   }

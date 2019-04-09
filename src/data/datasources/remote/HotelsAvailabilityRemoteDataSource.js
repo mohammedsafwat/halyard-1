@@ -12,8 +12,11 @@ const HotelsAvailabilityRemoteDataSource = implement(HotelsAvailabilityDataSourc
         const parameters = {
             checkin: hotelsAvailabilityFilter.checkIn,
             checkout: hotelsAvailabilityFilter.checkOut,
-            city_ids: hotelsAvailabilityFilter.cityIds,
+            latitude: hotelsAvailabilityFilter.latitude,
+            longitude: hotelsAvailabilityFilter.longitude,
             room1: hotelsAvailabilityFilter.room1,
+            offset: hotelsAvailabilityFilter.offset,
+            rows: hotelsAvailabilityFilter.rows,
             extras: "room_details,hotel_details,payment_terms"
         }
         const auth = ApiConstants.authentication;

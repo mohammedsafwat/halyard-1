@@ -1,12 +1,12 @@
 import implement from 'implement-js'
-import RestNetworkClient from '../../apiclients/RestNetworkClient'
-import CitiesDataSource from '../../protocols/CitiesDataSource'
-import ApiConstants from '../../constants/ApiConstants'
-import RequestType from '../../helpers/RequestType'
-import CitiesResponseParameters from '../../helpers/CitiesResponseParameters'
-import LocationResponseParameters from '../../helpers/LocationResponseParameters'
-import City from '../../models/City';
-import Location from '../../models/Location';
+import RestNetworkClient from 'data/apiclients/RestNetworkClient'
+import CitiesDataSource from 'data/protocols/CitiesDataSource'
+import ApiConstants from 'data/constants/ApiConstants'
+import RequestType from 'data/helpers/RequestType'
+import CitiesResponseParameters from 'data/helpers/CitiesResponseParameters'
+import LocationResponseParameters from 'data/helpers/LocationResponseParameters'
+import City from 'data/models/City';
+import Location from 'data/models/Location';
 
 const CitiesRemoteDataSource = implement(CitiesDataSource)({
     async cities(citiesFilter) {

@@ -1,0 +1,18 @@
+@import './fonts';
+@import './sizes';
+@import './colors';
+
+@mixin font-default() {
+  font-family: $font-stack;
+  font-weight: 400;
+  font-size: $size_font;
+  color: $font-color;
+  letter-spacing: 1px;
+}
+
+@mixin font-big() {
+  color: $font-color;
+  font-size: $size_font_big;
+  font-weight: bold;
+  letter-spacing: 1px;
+}

@@ -1,6 +1,6 @@
 import implement from 'implement-js'
 import dateFormat from 'dateformat'
-import DateUtilsProtocol from '../protocols/DateUtilsProtocol'
+import DateUtilsProtocol from 'data/protocols/DateUtilsProtocol'
 
 const DateUtils = implement(DateUtilsProtocol)({
     now: new Date(),

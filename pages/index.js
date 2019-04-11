@@ -1,44 +1,59 @@
 import React from 'react';
-import Layout from '../components/Layout'
-import ReactMapGL from 'react-map-gl';
+
+// import UserLocationRemoteDataSource from 'data/datasources/remote/UserLocationRemoteDataSource'
+
+import Layout from 'components/Layout'
+import Map from 'components/Map'
+import CardContainer from 'components/CardContainer'
+import './scss/index.scss'
 
 class Index extends React.Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super()
     this.state = {
-      viewport: {
-        latitude: 37.785164,
-        longitude: -100,
-        zoom: 3.5,
-        bearing: 0,
-        pitch: 0
-      },
-      marker: {
-        latitude: 37.785164,
-        longitude: -100,
-      },
-      events: {}
+      geo: { latitude: -27.588205, longitude: -48.5537435 }
     };
   }
 
-  render() {
-    const {viewport} = this.state;
 
+  // async componentDidMount() {
+  //   try {
+  //     const location = await UserLocationRemoteDataSource.userLocation()
+  //     this.setState({ geo: location })
+  //   } catch(err) {
+  //     console.warn(err);
+  //   }
+  // }
+
+  // fetchHotelsData = async (userLocation) => {
+  //   const hotelsAvailabilityFilter = new HotelsAvailabilityFilter(DateUtils.nowDate(), DateUtils.nextMonthsDate(1), userLocation.latitude, userLocation.longitude, 'A,A', 0, 20);
+  //   this.fetchHotelsAvailability(hotelsAvailabilityFilter)
+  //     .then(hotelsAvailabilityData => {
+  //       this.setState(() => ({
+  //         hotelsAvailabilityData
+  //       }));
+  //       const hotelIds = hotelsAvailabilityData.map(hotelAvailability => {
+  //         return hotelAvailability.hotelId;
+  //       }).join(',');
+  //       const hotelsFilter = new HotelsFilter(hotelIds, 0, 20);
+  //       this.fetchHotels(hotelsFilter).then(hotelsData => this.setState(() => ({
+  //         hotelsData
+  //       })));
+  //     });
+  // };
+
+  render() {
+    const { latitude, longitude } = this.state.geo;
     return (
       <Layout>
-        {/* <ReactMapGL
-          {...viewport}
-          width={400}
-          height={400}
-          mapStyle="mapbox://styles/mapbox/dark-v9"
-          mapboxApiAccessToken="pk.eyJ1IjoidGFsaWVzY2hlciIsImEiOiJjam9pYWg0bGIwMHpyM3dwYW1sZ211Z2ZvIn0.f9u_i3_uGnJQ9UKD5cGzFg"
-          onViewportChange={(viewport) => this.setState({viewport})}
-        /> */}
-      </Layout>
+        <div className="map">
+          <Map latitude={latitude} longitude={longitude} />
+        </div>
+        <CardContainer />
+    </Layout>
     );
   }
 }
 
 export default Index
-

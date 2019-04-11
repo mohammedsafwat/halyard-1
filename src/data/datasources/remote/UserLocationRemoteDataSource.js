@@ -1,9 +1,9 @@
 import implement from 'implement-js'
-import UserLocationDataSource from '../../protocols/UserLocationDataSource'
+import UserLocationDataSource from 'data/protocols/UserLocationDataSource'
 import geolocator from 'geolocator'
-import ApiConstants from '../../constants/ApiConstants'
-import LocationResponseParameters from '../../helpers/LocationResponseParameters'
-import Location from '../../models/Location'
+import ApiConstants from 'data/constants/ApiConstants'
+import LocationResponseParameters from 'data/helpers/LocationResponseParameters'
+import Location from 'data/models/Location'
 
 const UserLocationRemoteDataSource = implement(UserLocationDataSource)({
     async userLocation() {

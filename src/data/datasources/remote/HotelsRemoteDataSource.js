@@ -1,13 +1,13 @@
 import implement from 'implement-js'
-import RestNetworkClient from '../../apiclients/RestNetworkClient'
-import HotelsDataSource from '../../protocols/HotelsDataSource'
-import ApiConstants from '../../constants/ApiConstants'
-import RequestType from '../../helpers/RequestType'
-import HotelsResponseParameters from '../../helpers/HotelsResponseParameters'
-import Hotel from '../../models/static_data/Hotel'
-import HotelData from '../../models/static_data/HotelData'
-import RoomData from '../../models/static_data/RoomData'
-import Photo from '../../models/Photo'
+import RestNetworkClient from 'data/apiclients/RestNetworkClient'
+import HotelsDataSource from 'data/protocols/HotelsDataSource'
+import ApiConstants from 'data/constants/ApiConstants'
+import RequestType from 'data/helpers/RequestType'
+import HotelsResponseParameters from 'data/helpers/HotelsResponseParameters'
+import Hotel from 'data/models/static_data/Hotel'
+import HotelData from 'data/models/static_data/HotelData'
+import RoomData from 'data/models/static_data/RoomData'
+import Photo from 'data/models/Photo'
 
 const HotelsRemoteDataSource = implement(HotelsDataSource)({
     async hotels(hotelsFilter) {

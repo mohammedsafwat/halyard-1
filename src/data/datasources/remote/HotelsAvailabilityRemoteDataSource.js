@@ -1,10 +1,10 @@
 import implement from 'implement-js'
-import RestNetworkClient from '../../apiclients/RestNetworkClient'
-import HotelsAvailabilityDataSource from '../../protocols/HotelsAvailabilityDataSource'
-import ApiConstants from '../../constants/ApiConstants'
-import RequestType from '../../helpers/RequestType'
-import HotelAvailability from '../../models/dynamic_data/HotelAvailability'
-import HotelsAvailabilityResponseParameters from '../../helpers/HotelsAvailabilityResponseParameters'
+import RestNetworkClient from 'data/apiclients/RestNetworkClient'
+import HotelsAvailabilityDataSource from 'data/protocols/HotelsAvailabilityDataSource'
+import ApiConstants from 'data/constants/ApiConstants'
+import RequestType from 'data/helpers/RequestType'
+import HotelAvailability from 'data/models/dynamic_data/HotelAvailability'
+import HotelsAvailabilityResponseParameters from 'data/helpers/HotelsAvailabilityResponseParameters'
 
 const HotelsAvailabilityRemoteDataSource = implement(HotelsAvailabilityDataSource)({
     async hotelsAvailability(hotelsAvailabilityFilter) {

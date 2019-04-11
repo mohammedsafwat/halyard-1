@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './App.css'
 import HotelsRemoteDataSource from './data/datasources/remote/HotelsRemoteDataSource'
 import UserLocationRemoteDataSource from './data/datasources/remote/UserLocationRemoteDataSource'
 import HotelsAvailabilityRemoteDataSource from './data/datasources/remote/HotelsAvailabilityRemoteDataSource'
@@ -20,6 +19,7 @@ class App extends Component {
     this.fetchUserLocation()
       .then(userLocation => {
         this.fetchHotelsData(userLocation)
+        console.log(userLocation)
       }).catch(error => {
         console.warn(error);
       });

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import implement from 'implement-js'
-import RequestType from '../helpers/RequestType'
-import RestNetworkClientProtocol from '../protocols/RestNetworkClientProtocol'
+import RequestType from 'data/helpers/RequestType'
+import RestNetworkClientProtocol from 'data/protocols/RestNetworkClientProtocol'
 
 const RestNetworkClient = implement(RestNetworkClientProtocol)({
     async performRequest(requestUrl, requestType, parameters, headers={}, auth={}) {

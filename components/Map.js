@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactMapGL from 'react-map-gl';
+import MapGL, { Marker, StaticMap } from 'react-map-gl';
 
 class Map extends React.Component {
   constructor(props) {
@@ -13,19 +13,21 @@ class Map extends React.Component {
         bearing: 0,
         pitch: 0
       },
-      marker: {
-        latitude: latitude,
-        longitude: longitude
-      },
       events: {}
     };
   }
+
+  mapRef = React.createRef()
 
   componentDidMount() {
     const width = window.innerWidth;
     const height = window.innerHeight;
     this.setViewport(width,  height);
     window.addEventListener('resize', () => this.setViewport(width, height));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', () => this.setViewport);
   }
 
   setViewport = (width, height) => {
@@ -40,12 +42,21 @@ class Map extends React.Component {
 
   render() {
     return (
-      <ReactMapGL
+      <StaticMap
+        ref={this.mapRef}
         mapStyle="mapbox://styles/mapbox/light-v10"
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
         {...this.state.viewport}
         onViewportChange={(viewport) => this.setState({viewport})}
-      />
+      >
+        <Marker
+          latitude={this.state.viewport.latitude}
+          longitude={this.state.viewport.longitude}
+          offsetLeft={-12}
+          offsetTop={-12}>
+          <div className="marker" />
+        </Marker>
+      </StaticMap>
     );
   }
 }

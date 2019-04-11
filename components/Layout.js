@@ -1,8 +1,7 @@
 import React from 'react'
-// import Link from 'next/link'
 import Head from 'next/head'
 
-const Layout = ({ children, title = 'Your daily inspiration ♥' }) => (
+const Layout = ({ cityName, children, title = 'Your daily inspiration ♥' }) => (
   <div>
     <Head>
       <title>{title}</title>
@@ -12,10 +11,11 @@ const Layout = ({ children, title = 'Your daily inspiration ♥' }) => (
     </Head>
     <header>
       <div className="brand">
-        <span>Halyard</span> booking <span className="brand-period">.</span>
+        <span className="brand-name">Halyard</span> booking <span className="brand-period">.</span>
       </div>
-      <div>
-        <img className="search-input" src="/static/search.svg" alt="search for another location" />
+      <div className="search-input-container">
+        <img src="/static/search.svg" alt="search for another location" />
+        <input placeholder={cityName}/>
       </div>
     </header>
 

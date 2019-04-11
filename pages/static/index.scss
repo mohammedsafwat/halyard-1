@@ -32,32 +32,40 @@ header {
   align-items: center;
   position: relative;
   margin: 0 10px;
+  width: 40px;
   transition: $default-transition;
   background-color: white;
   height: fit-content;
-  width: fit-content;
   input {
     background-color: white;
+    width: 100%;
     border: none;
     height: 20px;
     outline: none;
+    transition: $default-transition;
     &::placeholder {
-      letter-spacing: .5px;
+      opacity: 0;
     }
-    &:focus,
-    &:hover {
-      background-color: $color_light-background;
-      cursor: pointer;
-      box-shadow: 0 1px 0 #00000020;
-    }
-    width: 180px;
   }
   img {
     height: $size_image-icon;
     width: $size_image-icon;
     padding: $size_space;
   }
-  
+  &:focus,
+  &:hover {
+    background-color: $color_light-background;
+    cursor: pointer;
+    width: 180px;
+    box-shadow: 0 1px 0 #00000020;
+    input {
+      background-color: $color_light-background;
+      &::placeholder {
+        opacity: .8;
+        letter-spacing: .5px;
+      }
+    }
+  }
 }
 
 footer {

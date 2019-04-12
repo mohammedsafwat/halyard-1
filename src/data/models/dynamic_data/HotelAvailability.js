@@ -1,5 +1,5 @@
 export default class HotelAvailability {
-    constructor(reviewScoreWord, hotelId, stars, price, address, reviewScore, hotelName, postCode, country, hotelCurrencyCode, reviewNumber) {
+    constructor(reviewScoreWord, hotelId, stars, price, address, reviewScore, hotelName, postCode, country, currencyCode, reviewNumber) {
         this.reviewScoreWord = reviewScoreWord;
         this.hotelId = hotelId;
         this.stars = stars;
@@ -9,7 +9,7 @@ export default class HotelAvailability {
         this.hotelName = hotelName;
         this.postCode = postCode;
         this.country = country;
-        this.hotelCurrencyCode = hotelCurrencyCode;
+        this.currencyCode = currencyCode;
         this.reviewNumber = reviewNumber;
     }
 }

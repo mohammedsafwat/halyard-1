@@ -24,14 +24,17 @@ const HotelsRemoteDataSource = implement(HotelsDataSource)({
                 handleError(error);
                 return [];
             });
-        const hotelsData = hotelsResponse.data.result;
-        const hotels = hotelsData.map(hotel => {
-            const hotelId = hotel[HotelsResponseParameters.hotelId];
-            const hotelData = parseHotelData(hotel[HotelsResponseParameters.hotelData]);
-            const roomsData = parseRoomsData(hotel[HotelsResponseParameters.roomData]);
-            return new Hotel(hotelId, hotelData, roomsData);
-        });
-        return hotels;         
+        const hotelsData = hotelsResponse.data;
+        if (hotelsData) {
+            const hotels = hotelsData.result.map(hotel => {
+                const hotelId = hotel[HotelsResponseParameters.hotelId];
+                const hotelData = parseHotelData(hotel[HotelsResponseParameters.hotelData]);
+                const roomsData = parseRoomsData(hotel[HotelsResponseParameters.roomData]);
+                return new Hotel(hotelId, hotelData, roomsData);
+            });
+            return hotels;         
+        }
+        return [];
     }
 });
 

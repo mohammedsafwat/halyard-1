@@ -156,29 +156,21 @@ const cards = [
     imageAlt: ''
   },
 ]
-class Index extends React.Component {
 
+class Index extends React.Component {
   constructor() {
     super()
     this.state = {
       geo: { latitude: -27.588205, longitude: -48.5537435 },
       error: false,
-      cityName: 'Florianópolis'
+      city: null,
+      hotels: null
     };
   }
 
   async componentDidMount() {
-    // this.autocomplete('Ber')
-    // .then(results => console.log(results));
-
-    const city = await this.fetchRandomCity
-
-    this.fetchRandomCity()
-        .then(city => { 
-          HotelsRepository.hotels(city, 0, 20)
-            .then(result => console.log(result));
-        })
-        .catch(error => console.warn(error));
+    const city = await this.fetchRandomCity();
+    await this.fetchHotels(city, 0, 10);
   }
 
   autocomplete = async(text) => {
@@ -186,20 +178,37 @@ class Index extends React.Component {
   }
 
   fetchRandomCity = async () => {
-    const locationRandomizerFilter = new LocationRandomizerFilter(10);
+    const locationRandomizerFilter = new LocationRandomizerFilter(50);
     return await LocationRandomizerRemoteDataSource.randomLocation(locationRandomizerFilter);
   }
 
+  fetchHotels = async (city, offset, rows) => {
+    const hotels = await HotelsRepository.hotels(city, offset, rows);
+    if (this.state.hotels) {
+      const allHotels = this.state.hotels.concat(hotels)
+      this.setState({city, hotels: allHotels});
+    } else {
+      this.setState({city, hotels});
+    }
+  }
+
+  fetchMoreHotels = async () => {
+    return await this.fetchHotels(this.state.city, this.state.hotels.length, 10);
+  }
+  
   render() {
-    const { geo: { latitude, longitude }, error, cityName } = this.state;
-    return (
-      <Layout cityName={cityName}>
-        <div className="map">
-          <Map latitude={latitude} longitude={longitude} />
-        </div>
-        <CardContainer cards={cards} hasError={error} />
-    </Layout>
-    );
+    const { geo: { latitude, longitude }, error, cityName, hotels } = this.state;
+    if (hotels) {
+      return (
+        <Layout cityName={cityName}>
+          <div className="map">
+            <Map latitude={latitude} longitude={longitude} />
+          </div>
+          <CardContainer cards={hotels} fetchMoreHotels={this.fetchMoreHotels} hasError={error} />
+        </Layout>
+      ); 
+    }
+    return <h4>Loading...</h4>
   }
 }
 

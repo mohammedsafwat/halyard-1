@@ -16,7 +16,7 @@ const HotelsRepository = implement(HotelsDataSource)({
 
 const fetchHotelsData = async (city, offset, rows) => {
     let hotelsCardsData = []
-    const hotelsAvailabilityFilter = new HotelsAvailabilityFilter(DateUtils.nowDate(), DateUtils.nextMonthsDate(1), city.location.latitude, city.location.longitude, 'A,A', 0, 20);
+    const hotelsAvailabilityFilter = new HotelsAvailabilityFilter(DateUtils.nowDate(), DateUtils.nextDaysDate(1), city.location.latitude, city.location.longitude, 'A,A', 0, 20);
     const hotelsAvailabilityData = await fetchHotelsAvailability(hotelsAvailabilityFilter);
     console.log(hotelsAvailabilityData);
     const hotelIds = hotelsAvailabilityData.map(hotelAvailability => {

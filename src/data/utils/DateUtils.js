@@ -7,8 +7,8 @@ const DateUtils = implement(DateUtilsProtocol)({
     nowDate() {
         return dateFormat(this.now, "yyyy-mm-dd");
     },
-    nextMonthsDate(numberOfMonth) {
-        return dateFormat(new Date(this.now.getFullYear(), this.now.getMonth() + numberOfMonth, 1), "yyyy-mm-dd");
+    nextDaysDate(numberOfDays) {
+        return dateFormat(new Date(this.now.getFullYear(), this.now.getMonth(), this.now.getDate() + numberOfDays), "yyyy-mm-dd");
     }
 });
 

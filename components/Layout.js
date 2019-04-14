@@ -1,7 +1,8 @@
 import React from 'react'
 import Head from 'next/head'
+import LocalSearch from './LocalSearch'
 
-const Layout = ({ cityName, children, title = 'Your daily inspiration ♥' }) => (
+export default ({ cityName, children, title = 'Your daily inspiration ♥' }) => (
   <div>
     <Head>
       <title>{title}</title>
@@ -13,16 +14,11 @@ const Layout = ({ cityName, children, title = 'Your daily inspiration ♥' }) =>
       <div className="brand">
         <span className="brand-name">Halyard</span> booking <span className="brand-period">.</span>
       </div>
-      <div className="search-input-container">
-        <img src="/static/search.svg" alt="search for another location" />
-        <input placeholder={cityName}/>
-      </div>
+      <LocalSearch cityName={cityName}/>
     </header>
 
     {children}
 
-    <footer></footer>
+    <footer>made with ♥ by mohammed and tali.</footer>
   </div>
 )
-
-export default Layout

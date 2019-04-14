@@ -13,7 +13,7 @@ header {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 1000px;
+  max-width: $size_container;
   margin: 0 auto;
   font-size: 14px;
   font-family: $font-stack;
@@ -27,60 +27,74 @@ header {
   }
 }
 
+.input-active {
+  background-color: $color_light-background;
+  padding-left: 10px;
+  cursor: pointer;
+  width: 180px;
+
+  &::placeholder {
+    opacity: .8;
+  }
+}
+
 .search-input-container {
   display: flex;
   align-items: center;
   position: relative;
   margin: 0 10px;
-  width: 40px;
   transition: $default-transition;
   background-color: white;
-  height: fit-content;
+  height: $size_header;
   input {
     background-color: white;
-    width: 100%;
+    width: 20px;
     border: none;
-    height: 20px;
+    height: $size_header;
     outline: none;
     transition: $default-transition;
     &::placeholder {
       opacity: 0;
     }
+    &:focus,
+    &:hover,
+    &:active {
+      @extend .input-active;
+    }
   }
+
+  &:hover {
+    background-color: $color_light-background;
+    input {
+      @extend .input-active;
+    }
+  }
+
   img {
     height: $size_image-icon;
     width: $size_image-icon;
     padding: $size_space;
-  }
-  &:focus,
-  &:hover {
-    background-color: $color_light-background;
-    cursor: pointer;
-    width: 180px;
-    box-shadow: 0 1px 0 #00000020;
-    input {
-      background-color: $color_light-background;
-      &::placeholder {
-        opacity: .8;
-        letter-spacing: .5px;
-      }
-    }
   }
 }
 
 footer {
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: calc(100% - 20px);
   height: $size-footer;
-  background-color: #f8f8f8;
+  background-color: $color_light-background;
+  font-size: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 10px;
 }
 
 .map {
   @media screen and (min-width: map-get($breakpoints, 'tablet')) {
     position: absolute;
     right: 0;
-    width: 50%;
+    width: 70%;
   }
 }
 
@@ -92,7 +106,7 @@ footer {
   bottom: $size-footer;
   padding: 30px 0;
   flex-wrap: nowrap;
-  max-width: 100vw;
+  width: 100%;
   overflow-x: auto;
   @media screen and (min-width: map-get($breakpoints, 'tablet')) {
     height: calc(100vh - 40vh - 60px);
@@ -150,10 +164,37 @@ footer {
   }
 }
 
-
 .marker {
   height: 12px;
   width: 12px;
   border: 8px solid $color_highlight;
   border-radius: 100%;
+}
+
+.suggestions-area {
+  position: absolute;
+  top: $size_header;
+  width: 100%;
+  max-width: $size_container;
+  z-index: 1;
+}
+
+.suggestions-list {
+  width: fit-content;
+  margin: 0 0 0 auto;
+  background-color: white;
+}
+
+.suggestion {
+  margin: 0 0 0 auto;
+  height: 30px;
+  padding: 0 20px;
+  width: fit-content;
+  transition: $default-transition;
+  opacity: .7;
+  &:hover {
+    opacity: 1;
+    color: $color_highlight;
+    cursor: pointer;
+  }
 }

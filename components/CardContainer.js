@@ -2,24 +2,30 @@ import React from 'react'
 import Card from 'components/Card'
 import InfiniteScroll from "react-infinite-scroll-component";
 
-export default ({ cards, fetchMoreHotels, hasError }) => (
-  <>
-    { hasError ?
-      <div>There's no suggestions over here. Would you like to try <button onClick="">another random destination?</button></div>
+import LocalContext from 'contexts/LocalContext';
+
+export default () => (
+  <LocalContext.Consumer>
+  {({ setLocation, hotels, error, scrollBehavior }) => (
+    error ?
+      <div>
+        There's no suggestions over here.
+        <button onClick={setLocation}>Inspire</button>
+      </div>
       :
       <InfiniteScroll
         className="card-container"
-        dataLength={cards.length}
-        next={fetchMoreHotels}
+        dataLength={hotels}
         hasMore={true}
-        loader={<div></div>}
-        scrollThreshold={0.4}
         height={400}
+        loader={<div></div>}
+        next={scrollBehavior}
+        scrollThreshold={0.4}
       >
-      { cards.map(card => (
-        <Card key={card.hotelId} image={card.hotelImage} score={card.hotelScore} price={card.hotelPrice}/>
-      )) }
+      {/* { hotels.map(hotels => (
+        <Card key={hotels.hotelId} image={hotels.hotelImage} score={hotels.hotelScore} price={hotels.hotelPrice}/>
+      )) } */}
       </InfiniteScroll>
-    }
-  </>
+  )}
+</LocalContext.Consumer>
 )

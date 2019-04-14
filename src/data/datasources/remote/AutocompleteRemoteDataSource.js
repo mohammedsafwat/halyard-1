@@ -8,22 +8,27 @@ import AutocompleteResult from '../../models/AutocompleteResult'
 
 const AutocompleteRemoteDataSource = implement(AutocompleteDataSource)({
     async autocomplete(text) {
-        const autocompleteUrl = `${ApiConstants.corsProxyUrl}${ApiConstants.baseUrl}${ApiConstants.autocompleteEndpoint}`;
-        const parameters = {
-            text: text,
-            language: "en"
+        if (text.length >= 2) {
+            const autocompleteUrl = `${ApiConstants.corsProxyUrl}${ApiConstants.baseUrl}${ApiConstants.autocompleteEndpoint}`;
+            const parameters = {
+                text: text,
+                language: "en"
+            }
+            const auth = ApiConstants.authentication;
+            const autocompleteResponse = await RestNetworkClient.performRequest(autocompleteUrl, RequestType.get, parameters, {}, auth)
+                .catch(error => {
+                    handleError(error);
+                    return [];
+                });
+            if (autocompleteResponse.data) {
+                const autocompleteResultsData = autocompleteResponse.data.result.filter(result => result.type === "city");
+                const autocompleteResults = autocompleteResultsData.map(autocompeleteResultData => {
+                    return parseAutocompleteResult(autocompeleteResultData);
+                });
+                return autocompleteResults;
+            }   
         }
-        const auth = ApiConstants.authentication;
-        const autocompleteResponse = await RestNetworkClient.performRequest(autocompleteUrl, RequestType.get, parameters, {}, auth)
-            .catch(error => {
-                handleError(error);
-                return [];
-            });
-        const autocompleteResultsData = autocompleteResponse.data.result.filter(result => result.type === "city");
-        const autocompleteResults = autocompleteResultsData.map(autocompeleteResultData => {
-            return parseAutocompleteResult(autocompeleteResultData);
-        });
-        return autocompleteResults;
+        return [];
     }
 });
 

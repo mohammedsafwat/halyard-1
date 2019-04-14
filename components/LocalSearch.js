@@ -15,7 +15,8 @@ export default function LocalSearch() {
   ]);
   async function handleLocationSearch({ target }) {
     updateLocationToBeSearched(target.value);
-    // const list = await AutocompleteRemoteDataSource.autocomplete(locationToBeSearched)
+    const list = await AutocompleteRemoteDataSource.autocomplete(locationToBeSearched)
+    console.log(list);
   };
   const focusOnSearchInput = () => searchRef.current.focus();
 

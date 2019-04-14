@@ -1109,6 +1109,21 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
+"@now/next@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@now/next/-/next-0.1.2.tgz#c10f5280e7fc13db84a25e2b35d192b8ace7305b"
+  integrity sha512-VGQ+A1tAcuMEIS52YJ90cNS1MG/WXJuJdyrYHeLyp6lJNljJIohhSq3Xj3+S0k3ayJAf36CQEOJzT3XhaBCP5w==
+  dependencies:
+    "@now/node-bridge" "^1.0.0"
+    execa "^1.0.0"
+    fs-extra "^7.0.0"
+    semver "^5.6.0"
+
+"@now/node-bridge@^1.0.0":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@now/node-bridge/-/node-bridge-1.0.1.tgz#19fcc03494c1276dabee752d9a3e0aac72f56fd6"
+  integrity sha512-ooXyOw9C+sgtwZZZfs0vQ7zgiyI8d56HTYfrUqW96naYHFGlpqCPaypYGk27S0hG/SWdTH5Lpslyx4Vt7v7UVQ==
+
 "@svgr/babel-plugin-add-jsx-attribute@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@svgr/babel-plugin-add-jsx-attribute/-/babel-plugin-add-jsx-attribute-4.0.0.tgz#5acf239cd2747b1a36ec7e708de05d914cb9b948"

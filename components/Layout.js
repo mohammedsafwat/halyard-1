@@ -16,9 +16,7 @@ export default ({ cityName, children, title = 'Your daily inspiration ♥' }) =>
       </div>
       <LocalSearch cityName={cityName}/>
     </header>
-
     {children}
-
     <footer>made with ♥ by mohammed and tali.</footer>
   </div>
 )

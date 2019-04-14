@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@now/next": "^0.1.2",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.18.0",
@@ -24,7 +25,8 @@
     "build": "INLINE_RUNTIME_CHUNK=false next build",
     "start": "next start",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "now-build": "next build"
   },
   "eslintConfig": {
     "extends": "react-app"

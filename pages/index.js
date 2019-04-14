@@ -24,10 +24,11 @@ export default function Index() {
     name: 'Florianópolis',
   });
 
+  const setHotels = (newHotelsList) => updateHotels(newHotelsList)
+
   const fetchHotels = async (location) => {
     const newHotels = await HotelsRepository.hotels(location, 0, 10)
-    updateHotels(newHotels)
-    console.log(newHotels)
+    setHotels(newHotels)
   }
 
   const setLocation = async (newLocation) => {

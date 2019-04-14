@@ -4,7 +4,8 @@ import AutocompleteDataSource from 'data/protocols/AutocompleteDataSource'
 import ApiConstants from 'data/constants/ApiConstants'
 import RequestType from 'data/helpers/RequestType'
 import AutocompleteResponseParameters from 'data/helpers/AutocompleteResponseParameters'
-import AutocompleteResult from '../../models/AutocompleteResult'
+import City from 'data/models/City';
+import Location from 'data/models/Location';
 
 const AutocompleteRemoteDataSource = implement(AutocompleteDataSource)({
     async autocomplete(text) {
@@ -34,11 +35,13 @@ const AutocompleteRemoteDataSource = implement(AutocompleteDataSource)({
 
 const parseAutocompleteResult = autocompeleteResultData => {
     if (autocompeleteResultData) {
+        const cityId = autocompeleteResultData[AutocompleteResponseParameters.id];
         const cityName = autocompeleteResultData[AutocompleteResponseParameters.cityName];
         const countryName = autocompeleteResultData[AutocompleteResponseParameters.countryName];
         const latitude = autocompeleteResultData[AutocompleteResponseParameters.latitude];
         const longitude = autocompeleteResultData[AutocompleteResponseParameters.longitude];
-        return new AutocompleteResult(cityName, countryName, latitude, longitude);
+        const numberOfHotels = autocompeleteResultData[AutocompleteResponseParameters.numberOfHotels];
+        return new City(countryName, cityId, new Location(latitude, longitude), numberOfHotels, cityName);
     }
 };
 

@@ -109,7 +109,7 @@ footer {
   width: 100%;
   overflow-x: auto;
   @media screen and (min-width: map-get($breakpoints, 'tablet')) {
-    height: calc(100vh - 40vh - 60px);
+    height: calc(100vh - 40vh - 80px);
     background: linear-gradient(to right, white 70%, #ffffff00);
     top: $size_header;
     left: 0;
@@ -133,10 +133,8 @@ footer {
   overflow: hidden;
   
   img {
-    object-fit: cover;
-    width: 100%;
+    min-width: 100%;
     border-radius: $size_radius;
-    filter: contrast(120%) brightness(1.1);
   }
 
   &:hover {
@@ -146,21 +144,29 @@ footer {
   .price, .score {
     position: absolute;
     left: 0;
-    bottom: $size_space;
     border-radius: 0 $size_radius/2 $size_radius/2 0;
-    padding: $size_space/4 $size_space  $size_space/4  $size_space*2;
+    padding: $size_space/4 $size_space  $size_space/4  $size_space;
   }
-
+  
   .score {
-    bottom: 40px;
+    top: 10px;
     background-color: $color_highlight-background;
     color: white;
   }
-
+  
   .price {
-    font-size: 18px;
+    bottom: $size_space;
+    font-size: 16px;
     background-color: $color_dark-background;
     color: white;
+    small {
+      font-size: 10px;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: $shadow_hover;
   }
 }
 
@@ -181,11 +187,14 @@ footer {
 
 .suggestions-list {
   width: fit-content;
-  margin: 0 0 0 auto;
+  min-width: 180px;
+  margin: 0 50px 0 auto;
   background-color: white;
 }
 
 .suggestion {
+  line-height: 30px;
+  padding-top: 20px;
   margin: 0 0 0 auto;
   height: 30px;
   padding: 0 20px;

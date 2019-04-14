@@ -1,11 +1,19 @@
 import React from 'react'
 
-export default ({ score, price, image, hotelUrl, imageAlt }) => (
+export default ({
+  currency,
+  hotelUrl,
+  image,
+  imageAlt,
+  price,
+  score
+}) => (
   <>
-    <a href={hotelUrl} className="card">
+    <a href={hotelUrl} className="card" target="_blank">
       <img src={image} alt={imageAlt || 'This hotel ilustratative image'}/>
-      <div className="price">{price}</div>
+      <div className="price"><small>{currency}</small> {price}</div>
       <div className="score">{score}</div>
     </a>
   </>
 )
+

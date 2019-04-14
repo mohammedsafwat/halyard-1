@@ -6,12 +6,20 @@ export default function LocalSearch() {
   const [locationToBeSearched, updateLocationToBeSearched] = useState('');
   const searchRef = React.createRef();
   const [suggestionsList, updateSuggestionList] = useState([]);
+
   async function handleLocationSearch({ target }) {
     updateLocationToBeSearched(target.value);
     const list = await AutocompleteRemoteDataSource.autocomplete(locationToBeSearched)
     updateSuggestionList(list);
   };
+
   const focusOnSearchInput = () => searchRef.current.focus();
+
+  const handleSetSuggestion = (suggestion, setLocation) => {
+    setLocation(suggestion)
+    updateSuggestionList([])
+    updateLocationToBeSearched('')
+  }
 
   return (
     <LocalContext.Consumer>
@@ -28,7 +36,7 @@ export default function LocalSearch() {
           <div className="suggestions-area">
             <div className="suggestions-list">
               {suggestionsList.map(suggestion => (
-                <div key={suggestion.name} className="suggestion" onClick={() => setLocation(suggestion)}>
+                <div key={suggestion.name} className="suggestion" onClick={() => handleSetSuggestion(suggestion, setLocation)}>
                   {suggestion.name} | <b>{suggestion.country}</b>
                 </div>
               ))}

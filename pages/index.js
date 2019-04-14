@@ -24,17 +24,16 @@ export default function Index() {
     name: 'Florianópolis',
   });
 
-  const setHotels = (newHotelsList) => updateHotels(newHotelsList)
-
   const fetchHotels = async (location) => {
     const newHotels = await HotelsRepository.hotels(location, 0, 10)
-    setHotels(newHotels)
+    updateHotels(newHotels)
   }
 
   const setLocation = async (newLocation) => {
     const city = newLocation || await LocationRandomizerRemoteDataSource.randomLocation(new LocationRandomizerFilter(50));
     updateLocation(city)
     fetchHotels(city)
+    console.log(hotels)
   }
 
   const scrollBehavior = () => {}
